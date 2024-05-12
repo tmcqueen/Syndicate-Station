@@ -33,3 +33,15 @@
 - type: lobbyBackground
   id: Blueprint
   background: /Textures/LobbyScreens/blueprint.webp
+
+- type: lobbyBackground
+  id: Drippy
+  background: /Textures/LobbyScreens/you-either-drip-or-drown-nt-man-syndicate.png
+ 
+- type: lobbyBackground
+  id: Terminalstation
+  background: /Textures/LobbyScreens/terminalstation.webp
+
+- type: lobbyBackground
+  id: syndievsnt
+  background: /Textures/LobbyScreens/syndievsnt.jpg
