@@ -506,9 +506,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: id
+      state: id_syndi
     - map: ["computerLayerKeys"]
-      state: id_key
+      state: id_key_syndi
   - type: Computer
     board: IDComputerCircuitboard
   - type: PointLight
@@ -798,9 +798,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: dna
+      state: dna_syndi
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: syndie_key
   - type: ApcPowerReceiver
     powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
   - type: Computer
