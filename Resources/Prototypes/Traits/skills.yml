@@ -47,7 +47,36 @@
       inverted: true
       traits:
         - LightweightDrunk
+        - LiquorLifeline
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - Dwarf
   components:
+    - type: LightweightDrunk
+      boozeStrengthMultiplier: 0.5
+
+- type: trait
+  id: LiquorLifeline
+  category: Physical
+  points: -3
+  requirements:
+    - !type:CharacterJobRequirement
+      inverted: true
+      jobs:
+        - Borg
+        - MedicalBorg
+    - !type:CharacterTraitRequirement
+      inverted: true
+      traits:
+        - LightweightDrunk
+        - HeavyweightDrunk
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - Dwarf
+  components:
+    - type: LiquorLifeline
     - type: LightweightDrunk
       boozeStrengthMultiplier: 0.5
 

@@ -50,5 +50,5 @@
   name: vampiric
 
 - type: metabolizerType
-  id: IPC
-  name: ipc
+  id: LiquorLifeline
+  name: liquorlifeline

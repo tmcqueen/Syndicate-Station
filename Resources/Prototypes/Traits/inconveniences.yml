@@ -11,6 +11,11 @@
       inverted: true
       traits:
         - HeavyweightDrunk
+        - LiquorLifeline
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - Dwarf
   components:
     - type: LightweightDrunk
       boozeStrengthMultiplier: 2
