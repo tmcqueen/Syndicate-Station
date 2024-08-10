@@ -169,6 +169,7 @@ public abstract class AlertsSystem : EntitySystem
 
             Dirty(euid, alertsComponent);
         }
+        else if (alertType == AlertType.Offer) { } // Continue
         else
         {
             Log.Error("Unable to clear alert, unknown alertType {0}", alertType);

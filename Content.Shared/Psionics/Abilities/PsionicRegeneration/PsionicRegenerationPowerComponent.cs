@@ -1,5 +1,7 @@
 using Robust.Shared.Audio;
 using Content.Shared.DoAfter;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Abilities.Psionics
 {
@@ -22,7 +24,7 @@ namespace Content.Shared.Abilities.Psionics
         customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? PsionicRegenerationActionId = "ActionPsionicRegeneration";
 
-        public SoundSpecifier SoundUse = new SoundPathSpecifier("/Audio/Psionics/heartbeat_fast.ogg");
+        //public SoundSpecifier SoundUse = new SoundPathSpecifier("/Audio/Psionics/heartbeat_fast.ogg");
     }
 }
 

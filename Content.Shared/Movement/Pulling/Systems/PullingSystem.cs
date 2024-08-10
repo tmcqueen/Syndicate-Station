@@ -35,7 +35,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Network;
 using Content.Shared.MartialArts;
-using Content.Shared.MartialArts;
 using Robust.Shared.Map;
 using System.Numerics;
 using Content.Shared.Inventory.VirtualItem;
@@ -63,8 +62,8 @@ public sealed class PullingSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    //[Dependency] private readonly SharedPopupSystem _popup = default!;
-    //[Dependency] private readonly HeldSpeedModifierSystem _clothingMoveSpeed = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly HeldSpeedModifierSystem _clothingMoveSpeed = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
@@ -73,6 +72,7 @@ public sealed class PullingSystem : EntitySystem
     [Dependency] private readonly GrabThrownSystem _throwing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _xformSys = default!;
 
     public override void Initialize()
     {
@@ -90,7 +90,7 @@ public sealed class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, UpdateCanMoveEvent>(OnGrabbedMoveAttempt);
         SubscribeLocalEvent<PullableComponent, SpeakAttemptEvent>(OnGrabbedSpeakAttempt);
 
-        SubscribeLocalEvent<PullerComponent, AfterAutoHandleStateEvent>(OnAfterState);
+        //SubscribeLocalEvent<PullerComponent, AfterAutoHandleStateEvent>(OnAfterState);
         SubscribeLocalEvent<PullerComponent, EntGotInsertedIntoContainerMessage>(OnPullerContainerInsert);
         SubscribeLocalEvent<PullerComponent, EntityUnpausedEvent>(OnPullerUnpaused);
         SubscribeLocalEvent<PullerComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
@@ -99,8 +99,8 @@ public sealed class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullerComponent, VirtualItemThrownEvent>(OnVirtualItemThrown);
         SubscribeLocalEvent<PullerComponent, VirtualItemDropAttemptEvent>(OnVirtualItemDropAttempt);
 
-        SubscribeLocalEvent<PullableComponent, StrappedEvent>(OnBuckled);
-        SubscribeLocalEvent<PullableComponent, BuckledEvent>(OnGotBuckled);
+        //SubscribeLocalEvent<PullableComponent, StrappedEvent>(OnBuckled);
+        //SubscribeLocalEvent<PullableComponent, BuckledEvent>(OnGotBuckled);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ReleasePulledObject, InputCmdHandler.FromDelegate(OnReleasePulledObject, handle: false))
@@ -465,7 +465,7 @@ public sealed class PullingSystem : EntitySystem
         if (TryComp<PullerComponent>(oldPuller, out var pullerComp))
         {
             var pullerUid = oldPuller.Value;
-            _alertsSystem.ClearAlert(pullerUid, pullerComp.PullingAlert);
+            _alertsSystem.ClearAlert(pullerUid, AlertType.Pulling);
             pullerComp.Pulling = null;
 
             pullerComp.GrabStage = GrabStage.No;
@@ -488,7 +488,7 @@ public sealed class PullingSystem : EntitySystem
         }
 
 
-        _alertsSystem.ClearAlert(pullableUid, pullableComp.PulledAlert);
+        _alertsSystem.ClearAlert(pullableUid, AlertType.Pulling);
     }
 
     public bool IsPulled(EntityUid uid, PullableComponent? component = null)
@@ -496,46 +496,46 @@ public sealed class PullingSystem : EntitySystem
         return Resolve(uid, ref component, false) && component.BeingPulled;
     }
 
-    private bool OnRequestMovePulledObject(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
-    {
-        if (session?.AttachedEntity is not { } player ||
-            !player.IsValid())
-        {
-            return false;
-        }
+    //private bool OnRequestMovePulledObject(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
+    //{
+    //    if (session?.AttachedEntity is not { } player ||
+    //        !player.IsValid())
+    //    {
+    //        return false;
+    //    }
 
-        if (!TryComp<PullerComponent>(player, out var pullerComp))
-            return false;
+    //    if (!TryComp<PullerComponent>(player, out var pullerComp))
+    //        return false;
 
-        var pulled = pullerComp.Pulling;
+    //    var pulled = pullerComp.Pulling;
 
-        if (!HasComp<PullableComponent>(pulled))
-            return false;
+    //    if (!HasComp<PullableComponent>(pulled))
+    //        return false;
 
-        if (_containerSystem.IsEntityInContainer(player))
-            return false;
+    //    if (_containerSystem.IsEntityInContainer(player))
+    //        return false;
 
-        // Cooldown buddy
-        if (_timing.CurTime < pullerComp.NextThrow)
-            return false;
+    //    // Cooldown buddy
+    //    if (_timing.CurTime < pullerComp.NextThrow)
+    //        return false;
 
-        pullerComp.NextThrow = _timing.CurTime + pullerComp.ThrowCooldown;
+    //    pullerComp.NextThrow = _timing.CurTime + pullerComp.ThrowCooldown;
 
-        // Cap the distance
-        const float range = 2f;
-        var fromUserCoords = coords.WithEntityId(player, EntityManager);
-        var userCoords = new EntityCoordinates(player, Vector2.Zero);
+    //    // Cap the distance
+    //    const float range = 2f;
+    //    var fromUserCoords = coords.WithEntityId(player, EntityManager);
+    //    var userCoords = new EntityCoordinates(player, Vector2.Zero);
 
-        if (!userCoords.InRange(EntityManager, _xformSys, fromUserCoords, range))
-        {
-            var userDirection = fromUserCoords.Position - userCoords.Position;
-            fromUserCoords = userCoords.Offset(userDirection.Normalized() * range);
-        }
+    //    if (!userCoords.InRange(EntityManager, _xformSys, fromUserCoords, range))
+    //    {
+    //        var userDirection = fromUserCoords.Position - userCoords.Position;
+    //        fromUserCoords = userCoords.Offset(userDirection.Normalized() * range);
+    //    }
 
-        Dirty(player, pullerComp);
-        _throwing.TryThrow(pulled.Value, fromUserCoords, user: player, strength: 4f, animated: false, recoil: false, playSound: false, doSpin: false);
-        return false;
-    }
+    //    Dirty(player, pullerComp);
+    //    _throwing.TryThrow(pulled.Value, fromUserCoords, user: player, strength: 4f, animated: false, recoil: false, playSound: false, doSpin: false);
+    //    return false;
+    //}
 
     public bool IsPulling(EntityUid puller, PullerComponent? component = null)
     {
@@ -630,6 +630,24 @@ public sealed class PullingSystem : EntitySystem
             return false;
 
         return TogglePull((puller.Pulling.Value, pullable), pullerUid);
+    }
+
+    public bool TogglePull(EntityUid pullableUid, EntityUid pullerUid, PullableComponent puller)
+    {
+        if (puller.Puller == pullerUid)
+        {
+            if (TryGrab(pullableUid, pullerUid))
+                return true;
+
+            if (TryComp<PullerComponent>(pullerUid, out var pullerComp))
+                if (_timing.CurTime < pullerComp.NextStageChange)
+                    return true;
+
+            if (TryStopPull(pullableUid, puller, ignoreGrab: true))
+                return true;
+        }
+        TryComp<PullerComponent>(pullerUid, out var pullable);
+        return TryStartPull(pullerUid, pullableUid, pullable);
     }
 
     public bool TryStartPull(EntityUid pullerUid, EntityUid pullableUid,
@@ -745,8 +763,8 @@ public sealed class PullingSystem : EntitySystem
         // Messaging
         var message = new PullStartedMessage(pullerUid, pullableUid);
         //_modifierSystem.RefreshMovementSpeedModifiers(pullerUid);
-        _alertsSystem.ShowAlert(pullerUid, pullerComp.PullingAlert, 0);
-        _alertsSystem.ShowAlert(pullableUid, pullableComp.PulledAlert, 0);
+        _alertsSystem.ShowAlert(pullerUid, AlertType.Pulling, 0);
+        _alertsSystem.ShowAlert(pullableUid, AlertType.Pulled, 0);
 
         RaiseLocalEvent(pullerUid, message);
         RaiseLocalEvent(pullableUid, message);
@@ -879,29 +897,29 @@ public sealed class PullingSystem : EntitySystem
                 case GrabStage.Soft:
                     pullable.Comp.GrabEscapeChance = puller.Comp.SoftStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 1);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 1);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 1);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 1);
                     popupType = PopupType.Small;
                     break;
                 case GrabStage.Hard:
                     pullable.Comp.GrabEscapeChance = puller.Comp.HardStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 2);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 2);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 2);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 2);
                     popupType = PopupType.MediumCaution;
                     break;
                 case GrabStage.Suffocate:
                     pullable.Comp.GrabEscapeChance = puller.Comp.SuffocateStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 3);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 3);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 3);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 3);
                     popupType = PopupType.LargeCaution;
                     break;
                 default:
                     pullable.Comp.GrabEscapeChance = 1f;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 0);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 0);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 0);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 0);
                     break;
             }
 
@@ -1027,29 +1045,29 @@ public sealed class PullingSystem : EntitySystem
                 case GrabStage.Soft:
                     pullable.Comp.GrabEscapeChance = puller.Comp.SoftStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 1);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 1);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 1);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 1);
                     popupType = PopupType.Small;
                     break;
                 case GrabStage.Hard:
                     pullable.Comp.GrabEscapeChance = puller.Comp.HardStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 2);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 2);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 2);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 2);
                     popupType = PopupType.MediumCaution;
                     break;
                 case GrabStage.Suffocate:
                     pullable.Comp.GrabEscapeChance = puller.Comp.SuffocateStageEscapeChance;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 3);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 3);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 3);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 3);
                     popupType = PopupType.LargeCaution;
                     break;
                 default:
                     pullable.Comp.GrabEscapeChance = 1f;
                     _blocker.UpdateCanMove(pullable.Owner);
-                    _alertsSystem.ShowAlert(puller, puller.Comp.PullingAlert, 0);
-                    _alertsSystem.ShowAlert(pullable, pullable.Comp.PulledAlert, 0);
+                    _alertsSystem.ShowAlert(puller, AlertType.Pulling, 0);
+                    _alertsSystem.ShowAlert(pullable, AlertType.Pulled, 0);
                     break;
             }
 

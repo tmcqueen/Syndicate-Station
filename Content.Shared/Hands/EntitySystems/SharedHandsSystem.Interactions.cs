@@ -97,26 +97,31 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     private bool DropPressed(ICommonSession? session, EntityCoordinates coords, EntityUid netEntity)
     {
+
         if (TryComp(session?.AttachedEntity, out HandsComponent? hands) && hands.ActiveHand != null)
-        {
-            if (session != null)
-            {
-                var ent = session.AttachedEntity.Value;
+            TryDrop(session.AttachedEntity.Value, hands.ActiveHand, coords, handsComp: hands);
 
-                if (TryGetActiveItem(ent, out var item) && TryComp<VirtualItemComponent>(item, out var virtComp))
-                {
-                    var userEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
-                    RaiseLocalEvent(ent, userEv);
+        //if (TryComp(session?.AttachedEntity, out HandsComponent? hands) && hands.ActiveHand != null)
+        //{
+        //    if (session != null)
+        //    {
+        //        var ent = session.AttachedEntity.Value;
 
-                    var targEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
-                    RaiseLocalEvent(virtComp.BlockingEntity, targEv);
+        //        if (TryGetActiveItem(ent, out var item) && TryComp<VirtualItemComponent>(item, out VirtualItemComponent virtComp))
+        //        {
 
-                    if (userEv.Cancelled || targEv.Cancelled)
-                        return false;
-                }
-                TryDrop(ent, hands.ActiveHand, coords, handsComp: hands);
-            }
-        }
+        //            var userEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
+        //            RaiseLocalEvent(ent, userEv);
+
+        //            var targEv = new VirtualItemDropAttemptEvent(virtComp.BlockingEntity, ent, item.Value, false);
+        //            RaiseLocalEvent(virtComp.BlockingEntity, targEv);
+
+        //            if (userEv.Cancelled || targEv.Cancelled)
+        //                return false;
+        //        }
+        //        TryDrop(ent, hands.ActiveHand, coords, handsComp: hands);
+        //    }
+        //}
 
         // always send to server.
         return false;

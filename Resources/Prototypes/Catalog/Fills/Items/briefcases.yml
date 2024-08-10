@@ -62,3 +62,20 @@
       - id: ClothingHandsGlovesCombat
       - id: ClothingMaskNeckGaiter
       - id: ToyFigurineThief
+
+- type: entity
+  id: BriefcaseSyndieCQCBundleFilled
+  parent: BriefcaseSyndie
+  suffix: Syndicate, CQC Bundle
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,3
+  - type: StorageFill
+    contents:
+      - id: CQCManual
+      - id: ClothingHeadBandBlack
+      - id: CigPackSyndicate
