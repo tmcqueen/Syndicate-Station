@@ -24,9 +24,7 @@
       min: 108000 # DeltaV - 30 hours
     - !type:CharacterOverallTimeRequirement # DeltaV - Playtime requirement
       min: 108000 # 30 hours
-    - !type:CharacterSpeciesRequirement
-      species: 
-        - Human
+    - !type:CharacterWhitelistRequirement
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
@@ -50,15 +48,15 @@
 - type: startingGear
   id: CaptainGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSyndieFormal
-    back: ClothingBackpackSyndieCap
+    jumpsuit: ClothingUniformJumpsuitCaptain
+    back: ClothingBackpackCaptainFilled
     shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatSyndieMAA
+    head: ClothingHeadHatCaptain
     eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesSyndieCap
-    outerClothing: ClothingOuterCoatSyndieCap
+    gloves: ClothingHandsGlovesCaptain
+    outerClothing: ClothingOuterArmorCaptainCarapace
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
-  innerClothingSkirt: ClothingUniformJumpskirtSyndieFormalDress
+  innerClothingSkirt: ClothingUniformJumpskirtCaptain
   satchel: ClothingBackpackSatchelCaptainFilled
-  duffelbag: ClothingBackpackDuffelSyndicate
+  duffelbag: ClothingBackpackDuffelCaptainFilled
