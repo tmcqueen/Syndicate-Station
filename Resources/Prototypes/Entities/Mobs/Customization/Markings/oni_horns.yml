@@ -51,6 +51,7 @@
   sprites:
   - sprite: Mobs/Customization/Oni/oni_horns.rsi
     state: crowned
+<<<<<<< HEAD
 
 - type: marking
   id: OniHornSerket
@@ -523,3 +524,5 @@
     state: double_curved_outwards_3tone_2
   - sprite: Mobs/Customization/Oni/oni_horns.rsi
     state: double_curved_outwards_3tone_3
+=======
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))

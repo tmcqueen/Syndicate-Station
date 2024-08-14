@@ -1,6 +1,10 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
+<<<<<<< HEAD
+=======
+    "copyright": "crowned by dootythefrooty",
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +13,7 @@
         {
             "name": "crowned",
             "directions": 4
+<<<<<<< HEAD
         },
         {
             "name": "serket",
@@ -301,6 +306,8 @@
         {
             "name": "double_curved_outwards_3tone_3",
             "directions": 4
+=======
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
         }
     ]
 }

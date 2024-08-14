@@ -1,6 +1,10 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
+<<<<<<< HEAD
+=======
+    "copyright": "tall_curved & tall_bull by dootythefrooty",
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
     "size": {
         "x": 48,
         "y": 48
@@ -37,6 +41,7 @@
         {
             "name": "tall_bull_3tone_3",
             "directions": 4
+<<<<<<< HEAD
         },
         {
             "name": "makara",
@@ -61,6 +66,8 @@
         {
             "name": "makara_3tone_3",
             "directions": 4
+=======
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
         }
     ]
 }

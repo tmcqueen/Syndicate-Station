@@ -1,6 +1,10 @@
 marking-OniHornTallCurved = Tall Curved
 marking-OniHornTallCurved-tall_curved = Tall Curved
 
+<<<<<<< HEAD
+=======
+marking-OniHornTallCurved3Tone = Tall Curved Three Tone
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
 marking-OniHornTallCurved3Tone-tall_curved_3tone_1 = Bottom Third
 marking-OniHornTallCurved3Tone-tall_curved_3tone_2 = Middle Third
 marking-OniHornTallCurved3Tone-tall_curved_3tone_3 = Top Third
@@ -8,12 +12,17 @@ marking-OniHornTallCurved3Tone-tall_curved_3tone_3 = Top Third
 marking-OniHornTallBull= Tall Bull
 marking-OniHornTallBull-tall_bull = Tall Bull
 
+<<<<<<< HEAD
+=======
+marking-OniHornTallBull3Tone = Tall Bull Three Tone
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
 marking-OniHornTallBull3Tone-tall_bull_3tone_1 = Bottom Third
 marking-OniHornTallBull3Tone-tall_bull_3tone_2 = Middle Third
 marking-OniHornTallBull3Tone-tall_bull_3tone_3 = Top Third
 
 marking-OniHornCrowned = Crowned
 marking-OniHornCrowned-crowned = Crowned
+<<<<<<< HEAD
 
 marking-OniHornSerket = Serket
 marking-OniHornSerket-serket = Serket
@@ -172,3 +181,5 @@ marking-OniHornDoubleCurvedOutwards3Tone = Double Curved Outwards (Three Tone)
 marking-OniHornDoubleCurvedOutwards3Tone-double_curved_outwards_3tone_1 = Bottom Third
 marking-OniHornDoubleCurvedOutwards3Tone-double_curved_outwards_3tone_2 = Middle Third
 marking-OniHornDoubleCurvedOutwards3Tone-double_curved_outwards_3tone_3 = Top Third
+=======
+>>>>>>> 5f25d1bd64 (Oni Horn Markings (#726))
