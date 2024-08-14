@@ -116,6 +116,11 @@
     drinkDelayMultiplier: 0.5
   - type: Flammable
     fireStackIncreaseMultiplier: 1.25
+<<<<<<< HEAD
+=======
+  - type: Flashable
+    durationMultiplier: 1.5
+>>>>>>> a9280bb920 (Vulpkanin Rework: Number Changes (#713))
 
 - type: entity
   save: false
