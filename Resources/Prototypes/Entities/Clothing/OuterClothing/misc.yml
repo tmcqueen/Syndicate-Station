@@ -387,6 +387,7 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/unathirobe.rsi
   - type: Clothing
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/Misc/sonsmedium.rsi
   - type: Armor
     modifiers:
@@ -423,3 +424,6 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: GroupExamine
+=======
+    sprite: Clothing/OuterClothing/Misc/unathirobe.rsi
+>>>>>>> df73a1cb0b (Xenowears (#519))
