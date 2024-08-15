@@ -12,6 +12,9 @@ namespace Content.Shared.Flash
 
         // <summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d9a04690a4 (Vulpkanin Update (#715))
         //   Chance to get EyeDamage on flash
         // </summary>
         [DataField]
@@ -23,8 +26,11 @@ namespace Content.Shared.Flash
         [DataField]
         public int EyeDamage;
         
+<<<<<<< HEAD
 =======
 >>>>>>> a9280bb920 (Vulpkanin Rework: Number Changes (#713))
+=======
+>>>>>>> d9a04690a4 (Vulpkanin Update (#715))
         //   How much to modify the duration of flashes against this entity.
         // </summary>
         [DataField]
@@ -43,6 +49,7 @@ namespace Content.Shared.Flash
         public TimeSpan Time { get; }
         public float EyeDamageChance { get; }
         public int EyeDamage { get; }
+<<<<<<< HEAD
         public float DurationMultiplier { get; }
 
 <<<<<<< HEAD
@@ -56,13 +63,20 @@ namespace Content.Shared.Flash
         // <summary>
         //   How much to modify the duration of flashes against this entity.
         // </summary>
+=======
+>>>>>>> d9a04690a4 (Vulpkanin Update (#715))
         public float DurationMultiplier { get; }
 
-        public FlashableComponentState(float duration, TimeSpan time, float durationMultiplier)
+        public FlashableComponentState(float duration, TimeSpan time, float eyeDamageChance, int eyeDamage, float durationMultiplier)
         {
             Duration = duration;
             Time = time;
+<<<<<<< HEAD
 >>>>>>> a9280bb920 (Vulpkanin Rework: Number Changes (#713))
+=======
+            EyeDamageChance = eyeDamageChance;
+            EyeDamage = eyeDamage;
+>>>>>>> d9a04690a4 (Vulpkanin Update (#715))
             DurationMultiplier = durationMultiplier;
         }
     }

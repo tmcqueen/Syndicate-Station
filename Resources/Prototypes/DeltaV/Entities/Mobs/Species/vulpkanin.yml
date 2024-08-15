@@ -117,10 +117,13 @@
   - type: Flammable
     fireStackIncreaseMultiplier: 1.25
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - type: Flashable
     durationMultiplier: 1.5
 >>>>>>> a9280bb920 (Vulpkanin Rework: Number Changes (#713))
+=======
+>>>>>>> d9a04690a4 (Vulpkanin Update (#715))
 
 - type: entity
   save: false
