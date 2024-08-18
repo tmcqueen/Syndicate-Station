@@ -1,4 +1,4 @@
-﻿using Content.Server.Cuffs;
+using Content.Server.Cuffs;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
 using Content.Server.Implants.Components;
@@ -20,6 +20,7 @@ using Robust.Shared.Random;
 using System.Numerics;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Store.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 
@@ -107,7 +108,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         // We need stop the user from being pulled so they don't just get "attached" with whoever is pulling them.
         // This can for example happen when the user is cuffed and being pulled.
         if (TryComp<PullableComponent>(ent, out var pull) && _pullingSystem.IsPulled(ent, pull))
-            _pullingSystem.TryStopPull(ent, pull);
+            _pullingSystem.TryStopPull(ent, pull, ignoreGrab: true);
 
         var xform = Transform(ent);
         var targetCoords = SelectRandomTileInRange(xform, implant.TeleportRadius);

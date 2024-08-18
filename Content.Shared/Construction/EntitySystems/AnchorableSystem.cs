@@ -32,7 +32,6 @@ public sealed partial class AnchorableSystem : EntitySystem
     [Dependency] private   readonly TagSystem _tagSystem = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<TagComponent> _tagQuery;
 
     public const string Unstackable = "Unstackable";
 
@@ -41,7 +40,6 @@ public sealed partial class AnchorableSystem : EntitySystem
         base.Initialize();
 
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _tagQuery = GetEntityQuery<TagComponent>();
 
         SubscribeLocalEvent<AnchorableComponent, InteractUsingEvent>(OnInteractUsing,
             before: new[] { typeof(ItemSlotsSystem) }, after: new[] { typeof(SharedConstructionSystem) });
@@ -133,7 +131,7 @@ public sealed partial class AnchorableSystem : EntitySystem
 
         if (TryComp<PullableComponent>(uid, out var pullable) && pullable.Puller != null)
         {
-            _pulling.TryStopPull(uid, pullable);
+            _pulling.TryStopPull(uid, pullable, ignoreGrab: true);
         }
 
         // TODO: Anchoring snaps rn anyway!
@@ -330,7 +328,6 @@ public sealed partial class AnchorableSystem : EntitySystem
             if (_tagSystem.HasTag(entity.Value, Unstackable, _tagQuery))
             {
                 return true;
-            }
         }
 
         return false;
