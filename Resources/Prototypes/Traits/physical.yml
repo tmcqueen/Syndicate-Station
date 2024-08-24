@@ -1,13 +1,16 @@
 - type: trait
   id: WillToLive
   category: Physical
-  points: -2
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -19,13 +22,16 @@
 - type: trait
   id: WillToDie
   category: Physical
-  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -37,13 +43,16 @@
 - type: trait
   id: Tenacity
   category: Physical
-  points: -2
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -55,13 +64,16 @@
 - type: trait
   id: GlassJaw
   category: Physical
-  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -73,7 +85,6 @@
 - type: trait
   id: Vigor
   category: Physical
-  points: -3
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -88,6 +99,7 @@
       inverted: true
       species:
         - Oni
+        - IPC
   components:
     - type: StaminaCritModifier
       critThresholdModifier: 10
@@ -95,7 +107,6 @@
 - type: trait
   id: Lethargy
   category: Physical
-  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -117,13 +128,16 @@
 - type: trait
   id: HighAdrenaline
   category: Physical
-  points: -3
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -136,13 +150,16 @@
 - type: trait
   id: AdrenalDysfunction
   category: Physical
-  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
       jobs:
         - Borg
         - MedicalBorg
+    - !type:CharacterSpeciesRequirement
+      inverted: true
+      species:
+        - IPC
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -154,7 +171,6 @@
 - type: trait
   id: Masochism
   category: Physical
-  points: -3
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -173,7 +189,6 @@
 - type: trait
   id: LowPainTolerance
   category: Physical
-  points: 1
   requirements:
     - !type:CharacterJobRequirement
       inverted: true
@@ -191,7 +206,6 @@
 - type: trait
   id: MartialArtist
   category: Physical
-  points: -2
   requirements:
   - !type:CharacterJobRequirement
     inverted: true

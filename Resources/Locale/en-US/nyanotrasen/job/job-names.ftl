@@ -6,5 +6,5 @@ job-name-prisoner = Prisoner
 job-name-mantis = Mantis
 
 # Role timers
-JobMailCarrier = Courier
-JobForensicMantis = Mantis
+JobMailCarrier = Cybersun Courier
+JobForensicMantis = Psionic Mantis
